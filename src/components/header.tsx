@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, Briefcase, BrainCircuit, MessageSquareQuote, Send, X } from "lucide-react";
+import { Menu, Briefcase, BrainCircuit, MessageSquareQuote, Send, X, FileText } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -11,6 +11,7 @@ const navLinks = [
   { href: "#projects", label: "Projects", icon: <Briefcase className="h-5 w-5" /> },
   { href: "#skills", label: "Skills", icon: <BrainCircuit className="h-5 w-5" /> },
   { href: "#testimonials", label: "Testimonials", icon: <MessageSquareQuote className="h-5 w-5" /> },
+  { href: "/resume.pdf", label: "Resume", icon: <FileText className="h-5 w-5" />, target: "_blank" },
   { href: "#contact", label: "Contact", icon: <Send className="h-5 w-5" /> },
 ];
 
@@ -33,6 +34,7 @@ export function Header() {
         <Link
           key={link.href}
           href={link.href}
+          target={link.target}
           onClick={() => setMobileMenuOpen(false)}
           className="flex items-center gap-2 transition-colors hover:text-primary"
         >

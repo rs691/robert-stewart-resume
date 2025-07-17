@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 
 export function Hero() {
   return (
@@ -15,9 +15,14 @@ export function Hero() {
               A passionate developer and dedicated tutor showcasing a journey through code and collaboration.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg">
               <Link href="#contact">Get in Touch</Link>
+            </Button>
+            <Button asChild variant="secondary" size="lg">
+              <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                View Resume <Download className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="#projects">

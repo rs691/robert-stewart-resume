@@ -18,6 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ContactFormSchema } from "@/lib/definitions";
 import { sendEmail } from "@/lib/actions";
 import React from "react";
+import { motion } from "framer-motion";
 
 export function ContactSection() {
   const { toast } = useToast();
@@ -54,15 +55,27 @@ export function ContactSection() {
   return (
     <section id="contact" className="w-full py-16 md:py-24 lg:py-32 bg-secondary">
       <div className="container px-4 md:px-6">
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-3xl text-center"
+        >
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary">
             Get in Touch
           </h2>
           <p className="mt-4 text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
             Have a question or want to work together? Fill out the form below.
           </p>
-        </div>
-        <div className="mx-auto mt-12 max-w-xl">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mx-auto mt-12 max-w-xl"
+        >
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
@@ -109,7 +122,7 @@ export function ContactSection() {
               </Button>
             </form>
           </Form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

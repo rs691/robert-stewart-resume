@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from "./ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -33,12 +34,18 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="w-full py-16 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
-        <div className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">What My Tutees Say</h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl mt-4">
             Feedback from students I've had the pleasure of teaching.
           </p>
-        </div>
+        </motion.div>
         <Carousel
           opts={{
             align: "start",
@@ -50,31 +57,37 @@ export function Testimonials() {
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1 h-full">
-                  <Card className="flex flex-col justify-between h-full p-6">
-                    <CardContent className="p-0">
-                      <div className="flex mb-4">
-                        {Array(testimonial.rating).fill(0).map((_, i) => (
-                           <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                        ))}
-                         {Array(5 - testimonial.rating).fill(0).map((_, i) => (
-                           <Star key={i} className="h-5 w-5 text-muted-foreground" />
-                        ))}
-                      </div>
-                      <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
-                    </CardContent>
-                    <CardFooter className="p-0 mt-6">
-                      <div className="flex items-center gap-4">
-                        <Avatar>
-                          <AvatarImage src={`https://placehold.co/40x40.png?text=${testimonial.initials}`} />
-                          <AvatarFallback>{testimonial.initials}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className="font-semibold">{testimonial.name}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                  <motion.div
+                    whileHover={{ scale: 1.03, y: -4 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="h-full"
+                  >
+                    <Card className="flex flex-col justify-between h-full p-6 transition-shadow duration-300 hover:shadow-xl">
+                      <CardContent className="p-0">
+                        <div className="flex mb-4">
+                          {Array(testimonial.rating).fill(0).map((_, i) => (
+                             <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                          ))}
+                           {Array(5 - testimonial.rating).fill(0).map((_, i) => (
+                             <Star key={i} className="h-5 w-5 text-muted-foreground" />
+                          ))}
                         </div>
-                      </div>
-                    </CardFooter>
-                  </Card>
+                        <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
+                      </CardContent>
+                      <CardFooter className="p-0 mt-6">
+                        <div className="flex items-center gap-4">
+                          <Avatar>
+                            <AvatarImage src={`https://placehold.co/40x40.png?text=${testimonial.initials}`} />
+                            <AvatarFallback>{testimonial.initials}</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <p className="font-semibold">{testimonial.name}</p>
+                            <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                          </div>
+                        </div>
+                      </CardFooter>
+                    </Card>
+                  </motion.div>
                 </div>
               </CarouselItem>
             ))}

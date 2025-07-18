@@ -1,8 +1,10 @@
+"use client";
+
 import React from "react";
 import { Card, CardContent } from "./ui/card";
 import { GitMerge, Database, Code, Component } from 'lucide-react';
+import { motion } from "framer-motion";
 
-// Custom SVG Icons for technologies
 const JavaScriptIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 15.5v-11l6 5.5-6 5.5z"/></svg>
 );
@@ -43,24 +45,54 @@ const skills = [
   { name: "Git", icon: <GitMerge className="h-8 w-8 text-primary" /> },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: (i: number) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: i * 0.07,
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  }),
+};
+
 export function SkillsOverview() {
   return (
     <section id="skills" className="w-full py-16 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
-        <div className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Technical Skills</h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl mt-4">
             A snapshot of the technologies and tools I work with.
           </p>
-        </div>
+        </motion.div>
         <div className="mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-12">
-          {skills.map((skill) => (
-            <Card key={skill.name} className="flex flex-col items-center justify-center p-4 transition-all duration-300 ease-in-out hover:shadow-lg hover:bg-accent/10">
-              <CardContent className="flex flex-col items-center justify-center gap-3 p-0">
-                {skill.icon}
-                <p className="text-sm font-medium text-center">{skill.name}</p>
-              </CardContent>
-            </Card>
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={cardVariants}
+              whileHover={{ scale: 1.05, y: -5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <Card className="flex flex-col items-center justify-center p-4 h-full transition-shadow duration-300 ease-in-out hover:shadow-lg hover:bg-accent/10">
+                <CardContent className="flex flex-col items-center justify-center gap-3 p-0">
+                  {skill.icon}
+                  <p className="text-sm font-medium text-center">{skill.name}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>

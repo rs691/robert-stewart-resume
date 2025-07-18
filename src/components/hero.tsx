@@ -10,7 +10,7 @@ export function Hero() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex justify-center items-center">
              <Image
-              src="/stewart.jpg"
+              src="/stewart.png"
               alt="Stewart's Portrait"
               width={400}
               height={400}

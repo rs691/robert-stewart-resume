@@ -54,7 +54,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="w-full py-16 md:py-24 lg:py-32 bg-secondary">
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 md:px-6 max-w-7xl mx-auto"> 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export function ContactSection() {
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary">
             Get in Touch
           </h2>
-          <p className="mt-4 text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          <p className="mt-4 text-muted-foreground md:text-xl/relaxed">
             Have a question or want to work together? Fill out the form below.
           </p>
         </motion.div>

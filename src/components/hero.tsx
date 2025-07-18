@@ -19,7 +19,7 @@ export function Hero() {
               data-ai-hint="portrait"
             />
           </div>
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left justify-center space-y-6">
+          <div className="flex flex-col items-center text-center justify-center space-y-6">
             <div className="max-w-3xl">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-primary font-headline">
                 Stewart's Portfolio
@@ -28,7 +28,7 @@ export function Hero() {
                 A passionate developer and dedicated tutor showcasing a journey through code and collaboration.
               </p>
             </div>
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg">
                 <Link href="#contact">Get in Touch</Link>
               </Button>

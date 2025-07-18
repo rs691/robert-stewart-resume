@@ -15,6 +15,7 @@ export function Hero() {
               width={400}
               height={400}
               className="rounded-full object-cover w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
+              style={{ objectPosition: "center 10%" }}
               priority
               data-ai-hint="portrait"
             />
